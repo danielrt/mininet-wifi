@@ -224,9 +224,9 @@ function wifi_deps {
     fi
 
     echo "Installing Mininet-WiFi dependencies"
-    $install wireless-tools rfkill ${PYPKG}-numpy pkg-config libnl-route-3-dev \
+    $install iw rfkill ${PYPKG}-numpy pkg-config libnl-route-3-dev \
              libnl-3-dev libnl-genl-3-dev libssl-dev make libevent-dev patch \
-             libdbus-1-dev ${PYPKG}-psutil ${PYPKG}-matplotlib
+             libdbus-1-dev ${PYPKG}-psutil ${PYPKG}-matplotlib ${PYPKG}-six
 
     pushd $MININET_DIR/mininet-wifi
     git submodule update --init --recursive
@@ -557,9 +557,6 @@ function of {
         git clone --depth=1 https://github.com/mininet/openflow
     fi
     cd $BUILD_DIR/openflow
-
-    # Patch controller to handle more than 16 switches
-    patch -p1 < $MININET_DIR/mininet-wifi/util/openflow-patches/controller.patch
 
     # Resume the install:
     ./boot.sh
