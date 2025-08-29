@@ -547,8 +547,10 @@ function of {
     else
         $install git-core autotools-dev pkg-config libc6-dev
     fi
-    if [ "$DIST" = "Ubuntu" ] &&  [ `expr $RELEASE '>=' 24.04` = "1" ]; then
+    if [ "$DIST" = "Ubuntu" ] &&  [ `expr $RELEASE '==' 24.04` = "1" ]; then
         git clone --depth=1 https://github.com/ramonfontes/openflow
+    elif [ "$DIST" = "Ubuntu" ] &&  [ `expr $RELEASE '>=' 25.04` = "1" ]; then
+        git clone --depth=1 https://github.com/danielrt/openflow
     elif [ "$DIST" = "Debian" ]; then
         git clone --depth=1 https://github.com/ramonfontes/openflow -b debian
     else
